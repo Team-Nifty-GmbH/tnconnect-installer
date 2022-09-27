@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  meilisearch:
+    image: 'getmeili/meilisearch:latest'
+    environment:
+        MEILI_ENV: production
+        MEILI_MASTER_KEY:
+        MEILI_NO_ANALYTICS: true
+    restart: always
+    ports:
+      - "7700:7700"
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health" ]
+      retries: 3
+      timeout: 5s
+  gotenberg:
+    image: 'gotenberg/gotenberg:7'
+    build:
+      dockerfile: ./gotenberg/Dockerfile
+    healthcheck:
+      test: [ "CMD", "curl", "-f",  "http://localhost:3000/health" ]
+      retries: 3
+      timeout: 5s
+    ports:
+      - '3000:3000'
+    restart: always

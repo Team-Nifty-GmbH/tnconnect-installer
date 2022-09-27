@@ -1,0 +1,3 @@
+Host tnconnect
+	Hostname github.com
+	IdentityFile=~/.ssh/tnconnect
