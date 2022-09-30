@@ -22,18 +22,18 @@ This will allow the script to pull the repo and install it.
 ## What does it do?
 
 The install script will install the following software:
-    - [Docker](https://get.docker.com)
-    - [Docker Compose](https://get.docker.com)
-        - [Meilisearch](https://hub.docker.com/r/getmeili/meilisearch)
-        - [Gotenberg](https://hub.docker.com/r/gotenberg/gotenberg)
-    - nginx
-    - certbot
-    - php with extensions
-    - [composer](https://getcomposer.org)
-    - mariadb
-    - redis
-    - supervisor
-        - [laravel queue worker](https://laravel.com/docs/master/queues)
-        - [laravel websockets](https://beyondco.de/docs/laravel-websockets/)
+1. nginx
+2. certbot
+3. php with extensions
+4. mariadb
+5. [Docker](https://get.docker.com)
+6. [Docker Compose](https://get.docker.com)
+    1. [Meilisearch](https://hub.docker.com/r/getmeili/meilisearch)
+    1. [Gotenberg](https://hub.docker.com/r/gotenberg/gotenberg)
+7. supervisor
+    1. [laravel queue worker](https://laravel.com/docs/master/queues)
+    2. [laravel websockets](https://beyondco.de/docs/laravel-websockets/)
+8. redis
+9. [composer](https://getcomposer.org)
 
 Additionaly the cronjob for the laravel scheduler will be installed.
