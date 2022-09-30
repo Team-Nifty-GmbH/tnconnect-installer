@@ -8,7 +8,7 @@ prefixed with `connect.` eg. `connect.example.com`. when the domain is example.c
 ## Installation
 Copy this repo to your home directory and run the install script.
 
-    $ git clone git@github.com:Team-Nifty-GmbH/tnconnect-installer.git
+    $ git clone https://github.com/Team-Nifty-GmbH/tnconnect-installer.git
 
     $ cd tnconnect-installer
 
