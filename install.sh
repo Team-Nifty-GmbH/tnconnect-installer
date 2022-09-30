@@ -142,7 +142,7 @@ then
 
   case $yn in
   	yes ) echo ok, we will proceed;;
-  	* ) exit 0;;
+  	* ) sh ./rollback.sh && exit 0;;
   esac
 
   git clone git@tnconnect:Team-Nifty-GmbH/tnconnect-api.git /var/www/$hostname
