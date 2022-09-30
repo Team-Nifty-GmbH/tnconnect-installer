@@ -136,7 +136,9 @@ then
 	echo "-----------------------------------------------"
 	cat ~/.ssh/tnconnect.pub
 	echo "-----------------------------------------------"
-	git clone git@tnconnect:Team-Nifty-GmbH/tnconnect-api.git /var/www/$hostname
+	echo "Add the above key to the deploy keys account"
+	echo "-----------------------------------------------"
+	read -p "Type y to confirm you have added the key to the deploy keys account [y]" -n 1 -r
 fi
 
 if [ ! -f /var/www/$hostname/.env ]
