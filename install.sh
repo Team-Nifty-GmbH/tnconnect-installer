@@ -167,7 +167,7 @@ then
         touch /var/www/$hostname/storage/logs/laravel.log
 
         chown -R www-data:www-data /var/www/$hostname
-        sudo -u www-data composer i --working-dir=/var/www/$hostname --no-dev --no-interaction --no-ansi --no-plugins --no-progress --no-scripts --optimize-autoloader
+        sudo -u www-data composer i --working-dir=/var/www/$hostname --no-dev --no-interaction --no-ansi --no-plugins --no-progress --optimize-autoloader
         sudo -u www-data php /var/www/$hostname/artisan key:generate --no-interaction --no-ansi
         sudo echo "* * * * * www-data /usr/bin/php /var/www/$hostname/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontab
         sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
