@@ -172,6 +172,7 @@ then
         sudo echo "* * * * * www-data /usr/bin/php /var/www/$hostname/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontab
         sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
         sudo -u www-data php /var/www/$hostname/artisan db:init
+        sudo -u www-data php /var/www/$hostname/artisan scout:import
 fi
 
 sudo supervisorctl reread
@@ -186,6 +187,7 @@ sudo -u www-data composer i  --working-dir=/var/www/$hostname --no-dev --no-inte
 sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
 sudo -u www-data php /var/www/$hostname/artisan storage:link
 sudo -u www-data php /var/www/$hostname/artisan init:permissions
+sudo -u www-data php /var/www/$hostname/artisan scout:sync
 sudo -u www-data php /var/www/$hostname/artisan optimize
 sudo -u www-data php /var/www/$hostname/artisan config:cache
 sudo -u www-data php /var/www/$hostname/artisan view:cache
