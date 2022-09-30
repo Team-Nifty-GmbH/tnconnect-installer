@@ -138,7 +138,7 @@ then
 	echo "-----------------------------------------------"
 	echo "Add the above key to the deploy keys account"
 	echo "-----------------------------------------------"
-	read -p -r "Type yes to confirm you added the key to the deploy keys (yes/no) " yn
+	read -p "Type yes to confirm you added the key to the deploy keys (yes/no) " yn
 
   case $yn in
   	yes ) echo ok, we will proceed;;
