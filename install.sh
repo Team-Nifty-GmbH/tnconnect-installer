@@ -182,6 +182,7 @@ then
         sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
         sudo -u www-data php /var/www/$hostname/artisan db:init
         sudo -u www-data php /var/www/$hostname/artisan scout:import
+        sudo -u www-data php /var/www/$hostname/artisan scout:sync
 fi
 
 sudo supervisorctl reread
@@ -192,7 +193,7 @@ cd /var/www/$hostname/
 git fetch
 git pull origin dev
 
-sudo -u www-data composer i  --working-dir=/var/www/$hostname --no-dev --no-interaction --no-ansi --no-plugins --no-progress --no-scripts --optimize-autoloader
+sudo -u www-data composer i  --working-dir=/var/www/$hostname --no-dev --no-interaction --no-ansi --no-plugins --no-progress --optimize-autoloader
 sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
 sudo -u www-data php /var/www/$hostname/artisan storage:link
 sudo -u www-data php /var/www/$hostname/artisan init:permissions
