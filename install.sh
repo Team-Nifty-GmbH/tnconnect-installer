@@ -138,7 +138,14 @@ then
 	echo "-----------------------------------------------"
 	echo "Add the above key to the deploy keys account"
 	echo "-----------------------------------------------"
-	read -p "Type y to confirm you have added the key to the deploy keys account [y]" -n 1 -r
+	read -p -r "Type yes to confirm you added the key to the deploy keys (yes/no) " yn
+
+  case $yn in
+  	yes ) echo ok, we will proceed;;
+  	* ) exit 0;;
+  esac
+
+  git clone git@tnconnect:Team-Nifty-GmbH/tnconnect-api.git /var/www/$hostname
 fi
 
 if [ ! -f /var/www/$hostname/.env ]
