@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo NEEDRESTART_SUSPEND=1
 sudo DEBIAN_FRONTEND=noninteractive apt update && sudo apt -y upgrade
 
 if [ ! -f /usr/bin/dialog ]; then
@@ -197,10 +196,10 @@ sudo -u www-data composer i  --working-dir=/var/www/$hostname --no-dev --no-inte
 sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
 sudo -u www-data php /var/www/$hostname/artisan storage:link
 sudo -u www-data php /var/www/$hostname/artisan init:permissions
-sudo -u www-data php /var/www/$hostname/artisan scout:sync
 sudo -u www-data php /var/www/$hostname/artisan optimize
 sudo -u www-data php /var/www/$hostname/artisan config:cache
 sudo -u www-data php /var/www/$hostname/artisan view:cache
 sudo -u www-data php /var/www/$hostname/artisan event:cache
 sudo -u www-data php /var/www/$hostname/artisan queue:restart
 sudo -u www-data php /var/www/$hostname/artisan scout:import
+sudo -u www-data php /var/www/$hostname/artisan scout:sync
