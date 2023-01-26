@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo DEBIAN_FRONTEND=noninteractive apt update && sudo apt -y upgrade
+sudo apt-get update && sudo apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
 
 if [ ! -f /usr/bin/dialog ]; then
   sudo apt install -y dialog
