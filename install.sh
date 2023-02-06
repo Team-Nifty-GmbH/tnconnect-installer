@@ -193,10 +193,10 @@ git fetch
 git pull origin dev
 
 sudo -u www-data composer i  --working-dir=/var/www/$hostname --no-dev --no-interaction --no-ansi --no-plugins --no-progress --optimize-autoloader
+sudo -u www-data php /var/www/$hostname/artisan optimize
 sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
 sudo -u www-data php /var/www/$hostname/artisan storage:link
 sudo -u www-data php /var/www/$hostname/artisan init:permissions
-sudo -u www-data php /var/www/$hostname/artisan optimize
 sudo -u www-data php /var/www/$hostname/artisan queue:restart
 sudo -u www-data php /var/www/$hostname/artisan scout:import
 sudo -u www-data php /var/www/$hostname/artisan scout:sync-index-settings
