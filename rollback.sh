@@ -92,5 +92,8 @@ else
   sudo rm -rf /usr/local/bin/composer
 fi
 
+# remove logrotate
+sudo rm /etc/logrotate.d/$hostname
+
 # Uninstall the app itself
 sudo rm -rf /var/www/$hostname

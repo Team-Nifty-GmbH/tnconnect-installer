@@ -143,6 +143,13 @@ then
     rm composer-setup.php
 fi
 
+# Logrotate
+if [ ! -f /etc/logrotate.d/tnconnect ]
+then
+  cp ./logrotate /etc/logrotate.d/tnconnect
+  sed -i "s/tnconnect/$hostname/" /etc/logrotate.d/tnconnect
+fi
+
 # Install the app itself
 if [ ! -f ~/.ssh/config ]
 then
