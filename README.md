@@ -28,12 +28,12 @@ The install script will install the following software:
 4. mariadb
 5. [Docker](https://get.docker.com)
 6. [Docker Compose](https://get.docker.com)
-    1. [Meilisearch](https://hub.docker.com/r/getmeili/meilisearch)
     1. [Gotenberg](https://hub.docker.com/r/gotenberg/gotenberg)
-7. supervisor
+7. [meilisearch](https://docs.meilisearch.com/learn/cookbooks/running_production.html)
+8. supervisor
     1. [laravel queue worker](https://laravel.com/docs/master/queues)
     2. [laravel websockets](https://beyondco.de/docs/laravel-websockets/)
-8. redis
-9. [composer](https://getcomposer.org)
+9. redis
+10. [composer](https://getcomposer.org)
 
 Additionaly the cronjob for the laravel scheduler will be installed.

@@ -17,13 +17,19 @@ else
     echo "nginx is not installed"
 fi
 
+# Uninstall Certbot
+if [ ! -f /usr/bin/certbot ]; then
+  sudo DEBIAN_FRONTEND=noninteractive apt remove certbot python3-certbot-nginx -y
+  sudo apt autoremove -y
+fi
+
 # Uninstall php
 if [ ! -f /usr/bin/php ]
 then
   echo "php is not installed"
 else
-  sudo DEBIAN_FRONTEND=noninteractive apt remove php8.1 -y
-  sudo DEBIAN_FRONTEND=noninteractive apt remove php8.1-fpm php8.1-redis php8.1-bcmath php8.1-xml php8.1-fpm php8.1-mysql php8.1-zip php8.1-intl php8.1-ldap php8.1-gd php8.1-cli php8.1-bz2 php8.1-curl php8.1-mbstring -y
+  sudo DEBIAN_FRONTEND=noninteractive apt remove php8.2 -y
+  sudo DEBIAN_FRONTEND=noninteractive apt remove php8.2-fpm php8.2-redis php8.2-bcmath php8.2-xml php8.2-fpm php8.2-mysql php8.2-zip php8.2-intl php8.2-ldap php8.2-gd php8.2-cli php8.2-bz2 php8.2-curl php8.2-mbstring -y
   sudo systemctl restart nginx
 fi
 
@@ -63,6 +69,19 @@ if service --status-all | grep -Fq 'redis'; then
     sudo apt autoremove -y
 else
     echo "redis is not installed"
+fi
+
+# Uninstall meilisearch
+if service --status-all | grep -Fq 'meilisearch'; then
+    sudo service meilisearch stop
+    sudo systemctl disable meilisearch
+    sudo rm -rf /usr/local/bin/meilisearch
+    sudo rm /etc/systemd/system/meilisearch.service
+    sudo rm -rf /var/lib/meilisearch
+    sudo rm /etc/meilisearch.toml
+    sudo userdel -r meilisearch
+else
+    echo "meilisearch is not installed"
 fi
 
 # Uninstall composer
