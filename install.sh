@@ -40,6 +40,15 @@ else
   sudo systemctl restart nginx
 fi
 
+# Uninstall apache2
+if service --status-all | grep -Fq 'apache2'; then
+    echo "apache2 is installed"
+    sudo apt remove apache2 -y
+    sudo apt autoremove -y
+else
+    echo "apache2 is not installed"
+fi
+
 # Install Certbot
 if [ ! -f /usr/bin/certbot ]; then
   sudo DEBIAN_FRONTEND=noninteractive apt install -y certbot python3-certbot-nginx

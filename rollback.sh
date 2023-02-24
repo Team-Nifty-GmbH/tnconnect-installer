@@ -17,6 +17,22 @@ else
     echo "nginx is not installed"
 fi
 
+# Install apache2
+if service --status-all | grep -Fq 'apache2'; then
+    echo "apache2 is installed"
+else
+  sudo DEBIAN_FRONTEND=noninteractive apt install apache2 -y
+  sudo ufw allow 'Apache Full'
+  sudo mkdir -p /var/www/$hostname
+  sudo chown -R www-data:www-data /var/www/$hostname
+  sudo chmod -R 755 /var/www/$hostname
+  sudo cp ./apache2 /etc/apache2/sites-available/$hostname.conf
+  sudo sed -i "s/{\$hostname}/$hostname/g" /etc/apache2/sites-available/$hostname.conf
+  sudo a2ensite $hostname.conf
+  sudo a2dissite 000-default.conf
+  sudo systemctl restart apache2
+fi
+
 # Uninstall Certbot
 if [ ! -f /usr/bin/certbot ]; then
   sudo DEBIAN_FRONTEND=noninteractive apt remove certbot python3-certbot-nginx -y
