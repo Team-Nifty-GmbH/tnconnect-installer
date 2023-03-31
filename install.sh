@@ -208,6 +208,8 @@ then
         sed -i "s/QUEUE_CONNECTION=.*/QUEUE_CONNECTION=redis/" /var/www/$hostname/.env
         sed -i "s/SESSION_DRIVER=.*/SESSION_DRIVER=redis/" /var/www/$hostname/.env
         sed -i "s/MEDIA_DISK=.*/MEDIA_DISK=media/" /var/www/$hostname/.env
+        sed -i "s/PUSHER_HOST=.*/PUSHER_HOST=127.0.0.1/" /var/www/$hostname/.env
+        sed -i "s/PUSHER_PORT=.*/PUSHER_PORT=6001/" /var/www/$hostname/.env
         touch /var/www/$hostname/storage/logs/laravel.log
 
         chown -R www-data:www-data /var/www/$hostname
@@ -215,9 +217,8 @@ then
         sudo -u www-data php /var/www/$hostname/artisan key:generate --no-interaction --no-ansi
         sudo echo "* * * * * www-data /usr/bin/php /var/www/$hostname/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontab
         sudo -u www-data php /var/www/$hostname/artisan migrate --force --no-interaction --no-ansi
-        sudo -u www-data php /var/www/$hostname/artisan db:init
         sudo -u www-data php /var/www/$hostname/artisan scout:import
-        sudo -u www-data php /var/www/$hostname/artisan scout:sync
+        sudo -u www-data php /var/www/$hostname/artisan scout:sync-index-settings
 fi
 
 sudo supervisorctl reread
